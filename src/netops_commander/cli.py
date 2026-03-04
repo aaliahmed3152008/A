@@ -14,6 +14,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--device", required=True)
     parser.add_argument("--query", required=True)
     parser.add_argument("--actor", default="netops_user")
+    parser.add_argument(
+        "--confirmed",
+        action="store_true",
+        help="Allow execution of high-risk/destructive changes after external multi-stage approval",
+    )
     return parser
 
 
@@ -27,6 +32,7 @@ def main() -> None:
         device=args.device,
         query=args.query,
         actor=args.actor,
+        confirmed=args.confirmed,
     )
     print(json.dumps(result, indent=2))
 

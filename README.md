@@ -10,7 +10,10 @@ This repository converts the provided PRD into an implementation-ready, on-premi
   - Safety pipeline (`risk_scorer`, `syntax_validator`, `destructive_cmd_blocker`, `rollback_planner`)
   - Output as **strict JSON envelope** for direct automation.
 - **Protocol domain coverage map** matching routing/switching/security/qos/multicast/auth/nat/monitoring requirements.
-- **Deterministic safety guardrails** for destructive command blocking and mandatory confirmation.
+- **Deterministic safety guardrails**:
+  - destructive command detection
+  - mandatory multi-stage confirmation gate
+  - rollback package generation
 - **On-prem deployment assets** for `vLLM`, `llama.cpp`, and `Ollama` compatibility planning.
 
 ## Repository layout
@@ -23,9 +26,11 @@ This repository converts the provided PRD into an implementation-ready, on-premi
 - `src/netops_commander/schema.py`: strict schema validator.
 - `src/netops_commander/prompts.py`: system prompt template enforcing JSON-only behavior.
 - `src/netops_commander/cli.py`: local CLI entrypoint.
-- `tests/test_engine.py`: baseline regression tests.
+- `tests/test_engine.py`: regression tests for safe/unsafe workflows.
 
 ## Quick start
+
+Generate Cisco OSPF config:
 
 ```bash
 python -m src.netops_commander.cli \
@@ -34,6 +39,29 @@ python -m src.netops_commander.cli \
   --vendor cisco_ios_xe \
   --device R-CORE-01 \
   --query "configure ospf area 0 auth"
+```
+
+Try destructive operation (blocked by default):
+
+```bash
+python -m src.netops_commander.cli \
+  --request-id CFG-2025-0392 \
+  --action generate_config \
+  --vendor cisco_ios_xe \
+  --device R-CORE-01 \
+  --query "shutdown interface gigabitethernet0/1"
+```
+
+Allow confirmed destructive operation:
+
+```bash
+python -m src.netops_commander.cli \
+  --request-id CFG-2025-0393 \
+  --action generate_config \
+  --vendor cisco_ios_xe \
+  --device R-CORE-01 \
+  --query "shutdown interface gigabitethernet0/1" \
+  --confirmed
 ```
 
 ## Status
