@@ -1,0 +1,140 @@
+routing:
+  ospf:
+    - stub_area
+    - totally_stubby
+    - nssa
+    - area_0_backbone
+    - virtual_links
+    - lsa_types_1_7
+    - md5_authentication
+  bgp:
+    - ibgp_ebgp
+    - route_reflectors
+    - confederations
+    - communities
+    - as_path_filtering
+    - route_maps
+    - state_machine
+    - bfd_integration
+  eigrp:
+    - dual_algorithm
+    - feasible_successor
+    - named_mode
+    - auto_summary
+    - stub_routing
+    - load_balancing
+
+switching:
+  vlans:
+    - vtp_v1_v2_v3
+    - dtp
+    - dot1q_trunking
+    - private_vlan
+    - access_port
+    - vlan_pruning
+  stp:
+    - stp_802_1d
+    - rstp_802_1w
+    - mstp_802_1s
+    - portfast
+    - bpdu_guard
+    - root_guard
+  etherchannel:
+    - pagp
+    - lacp
+    - static
+    - load_balancing_hash
+    - l3_etherchannel
+
+security:
+  dot1x:
+    - eap_tls
+    - peap
+    - mab
+    - guest_vlan
+  ipsec_vpn:
+    - ikev2
+    - dmvpn
+    - site_to_site
+    - flexvpn
+  acls:
+    - standard
+    - extended
+    - named
+    - time_based
+  trustsec:
+    - sgt
+    - sgacl
+    - cts
+    - ise_integration
+
+qos:
+  classification_marking:
+    - dscp
+    - cos_802_1p
+    - ip_precedence
+    - nbar
+  policing_shaping:
+    - llq
+    - cbwfq
+    - wred
+    - mqc_policy
+
+multicast:
+  pim:
+    - sparse_mode
+    - dense_mode
+    - ssm
+    - rp_config
+    - auto_rp
+    - bsr
+  igmp:
+    - igmpv2
+    - igmpv3
+    - igmp_snooping
+    - mld_ipv6
+
+auth_integrity:
+  aaa:
+    - radius
+    - tacacs_plus
+    - aaa_framework
+    - ise
+  ssh:
+    - sshv2
+    - key_based_auth
+    - port_knocking
+  mpls:
+    - l3vpn
+    - l2vpn
+    - mpls_te
+    - ldp
+    - rsvp_te
+    - segment_routing
+    - sixpe_sixvpe
+
+nat:
+  nat_pat:
+    - dynamic_nat
+    - static_nat
+    - pat_overload
+    - nat64
+  nat_policies:
+    - inside_local
+    - outside_global
+    - translation_table
+    - hairpin_nat
+
+monitoring:
+  snmp:
+    - snmpv3
+    - mibs
+    - traps
+    - informs
+    - oid_polling
+  flow:
+    - netflow_v9
+    - ipfix
+    - sflow
+    - flow_export
+    - top_talkers
